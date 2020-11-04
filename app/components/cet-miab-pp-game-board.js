@@ -1,0 +1,1 @@
+export { default } from 'cet-miab-picture-puzzle/components/cet-miab-pp-game-board';
