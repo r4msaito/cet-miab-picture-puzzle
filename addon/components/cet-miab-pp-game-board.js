@@ -1,10 +1,10 @@
 import Ember from "ember";
 import config from "../config/common";
 import CetMIABGameBoard from "cet-miab-game-core/components/cet-miab-game-board";
+import constants from "cet-miab-game-core/util/constants";
 
 export default CetMIABGameBoard.extend({
-    classNames: ["cet-miab-game-board"],
-    classNameBindings: ["frozen:frozen"],
+    tagName: "",
     init() {
         this._super(...arguments);
         this.set("puzzleBoard", Ember.A([]));
@@ -12,8 +12,7 @@ export default CetMIABGameBoard.extend({
         this.set("puzzleBoardRowCount", 8);
         this.set("puzzleBoardColCount", 8);
         this.set("puzzlesSwapped", 0);
-        this.set("frozen", false);
-        this.set("gameState", "stopped");
+        this.setGameState(constants.GAMESTATE.STARTED);
         this.shufflePuzzleBoard();
     },
     getValidPuzzleBoard() {
@@ -50,16 +49,10 @@ export default CetMIABGameBoard.extend({
         puzzleBoard.objectAt(focusedPuzzlePieces[1].row).set(focusedPuzzlePieces[1].col + ".url", puzzlePieceURL1);
         this.incrementProperty("puzzlesSwapped");
     },
-    freezeBoard() {
-
-    },
     startGame() {
 
     },
     endGame() {
-
-    },
-    setGameState() {
 
     },
     actions: {
@@ -81,6 +74,9 @@ export default CetMIABGameBoard.extend({
                     this.endGame();
                 }
             }
+        },
+        onGameCtrlBtnClick() {
+            this.setGameState(constants.GAMESTATE.STOPPED);
         },
         startGameAction() {
 

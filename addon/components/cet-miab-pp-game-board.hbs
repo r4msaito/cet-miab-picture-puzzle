@@ -1,37 +1,25 @@
-<div class="cet-miab-game-board__puzzle">
-    {{#each puzzleBoard as | puzzleBoardRow puzzleBoardRowIndex |}}
-    <div class="cet-miab-game-board__puzzle-row cet-miab-game-board__puzzle-row-{{puzzleBoardRowIndex}}">
-        {{#each puzzleBoardRow as | puzzlePiece puzzlePieceIndex |}}
-        <div class="cet-miab-game-board__puzzle-item {{if puzzlePiece.focus 'focus'}}"
-            {{action "onPuzzlePieceClick" puzzlePiece puzzleBoardRowIndex puzzlePieceIndex}}>
-            <img src="{{puzzlePiece.url}}">
+<div class="cet-miab-game-board {{gameState}}">
+    <div class="cet-miab-game-board__puzzle">
+        {{#each puzzleBoard as | puzzleBoardRow puzzleBoardRowIndex |}}
+        <div class="cet-miab-game-board__puzzle-row cet-miab-game-board__puzzle-row-{{puzzleBoardRowIndex}}">
+            {{#each puzzleBoardRow as | puzzlePiece puzzlePieceIndex |}}
+            <div class="cet-miab-game-board__puzzle-item {{if puzzlePiece.focus 'focus'}}"
+                {{action "onPuzzlePieceClick" puzzlePiece puzzleBoardRowIndex puzzlePieceIndex}}>
+                <img src="{{puzzlePiece.url}}">
+            </div>
+            {{/each}}
         </div>
         {{/each}}
     </div>
-    {{/each}}
-</div>
 
-<div class="cet-miab-game-board__control">
-    <div class="cet-miab-game-board__control-item">
-        <div class="cet-miab-game-board__timer">
-            <div class="cet-miab-game-board__timer-h">00</div>
-            <div class="cet-miab-game-board__timer-m">00</div>
-            <div class="cet-miab-game-board__timer-s">00</div>
+    <div class="cet-miab-game-board__control">
+        <div class="cet-miab-game-board__control-item">
+            {{cet-miab-game-timer time=6000 timerState=timerState}}
         </div>
-    </div>
-    {{!-- <div class="cet-miab-game-board__control-item">
-        <div class="cet-miab-btn">
-            <button type="button">Start</button>
-        </div>
-    </div>
-    <div class="cet-miab-game-board__control-item">
-        <div class="cet-miab-btn">
-            <button type="button">Stop</button>
-        </div>
-    </div> --}}
-    <div class="cet-miab-game-board__control-item">
-        <div class="cet-miab-game-btn">
-            <button type="button">Reset</button>
+        <div class="cet-miab-game-board__control-item">
+            <div class="cet-miab-game-btn">
+                <button type="button" {{action "onGameCtrlBtnClick"}}>{{gameControlButtonLabel}}</button>
+            </div>
         </div>
     </div>
 </div>
