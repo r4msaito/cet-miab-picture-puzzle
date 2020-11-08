@@ -12,7 +12,7 @@ export default CetMIABGameBoard.extend({
         this.set("puzzleBoardRowCount", 8);
         this.set("puzzleBoardColCount", 8);
         this.set("puzzlesSwapped", 0);
-        this.setGameState(constants.GAMESTATE.STARTED);
+        this.setGameState(constants.GAMESTATE.STOPPED);
         this.shufflePuzzleBoard();
     },
     getValidPuzzleBoard() {
@@ -49,12 +49,6 @@ export default CetMIABGameBoard.extend({
         puzzleBoard.objectAt(focusedPuzzlePieces[1].row).set(focusedPuzzlePieces[1].col + ".url", puzzlePieceURL1);
         this.incrementProperty("puzzlesSwapped");
     },
-    startGame() {
-
-    },
-    endGame() {
-
-    },
     actions: {
         onPuzzlePieceClick(puzzlePiece, row, col) {
             if (this.isPuzzlePieceFocused(row, col) === true) {
@@ -71,18 +65,17 @@ export default CetMIABGameBoard.extend({
                 this.clearFocus();
 
                 if (this.isPuzzleValid()) {
-                    this.endGame();
+                    this.gameWon();
                 }
             }
         },
         onGameCtrlBtnClick() {
-            this.setGameState(constants.GAMESTATE.STOPPED);
-        },
-        startGameAction() {
-
-        },
-        resetGameAction() {
-
+            if (this.get("gameState") === constants.GAMESTATE.STOPPED) {
+                this.resetGame();
+                this.startGame();
+            } else if (this.get("gameState") === constants.GAMESTATE.STARTED) {
+                this.stopGame();
+            }   
         }
     }
 });
