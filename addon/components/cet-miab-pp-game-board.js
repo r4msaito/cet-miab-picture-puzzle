@@ -76,6 +76,9 @@ export default CetMIABGameBoard.extend({
             } else if (this.get("gameState") === constants.GAMESTATE.STARTED) {
                 this.stopGame();
             }   
+        },
+        timesUpAction() {
+            console.log("times up");
         }
     }
 });
