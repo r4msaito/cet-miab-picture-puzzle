@@ -1,1 +1,0 @@
-export { default } from 'cet-miab-picture-puzzle/components/cet-miab-picture-puzzle-test-modal';

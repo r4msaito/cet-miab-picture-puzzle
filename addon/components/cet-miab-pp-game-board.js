@@ -12,7 +12,6 @@ export default CetMIABGameBoard.extend({
         this.set("validPuzzleBoard", this.getValidPuzzleBoard());
         this.set("puzzleBoardRowCount", 8);
         this.set("puzzleBoardColCount", 8);
-        this.set("puzzlesSwapped", 0);
         this.setGameState(constants.GAMESTATE.STOPPED);
         this.shufflePuzzleBoard();
     },
@@ -48,7 +47,7 @@ export default CetMIABGameBoard.extend({
         let puzzleBoard = this.get("puzzleBoard");
         puzzleBoard.objectAt(focusedPuzzlePieces[0].row).set(focusedPuzzlePieces[0].col + ".url", puzzlePieceURL2);
         puzzleBoard.objectAt(focusedPuzzlePieces[1].row).set(focusedPuzzlePieces[1].col + ".url", puzzlePieceURL1);
-        this.incrementProperty("puzzlesSwapped");
+        this.addMoves();
     },
     actions: {
         onPuzzlePieceClick(puzzlePiece, row, col) {
@@ -73,14 +72,25 @@ export default CetMIABGameBoard.extend({
         onGameCtrlBtnClick() {
             if (this.get("gameState") === constants.GAMESTATE.STOPPED) {
                 this.resetGame();
-                this.startGame();
+                this.showInstructions({
+                    modalComponent: "cet-miab-picture-puzzle-help-modal",
+                    showControls: true,
+                    onOkClick: this.startGame.bind(this),
+                    okText: "Start"
+                });
             } else if (this.get("gameState") === constants.GAMESTATE.STARTED) {
                 this.stopGame();
-                this.get("cetMiabGameModalService").show("cet-miab-picture-puzzle-test-modal");
+                this.get("cetMiabGameModalService").show({
+                    component: "cet-miab-game-win-modal",
+                    showControls: true,
+                    onOkClick: this.changeGame,
+                    okText: "Next Game",
+                    hideClose: true
+                });
             }   
         },
         timesUpAction() {
-            console.log("cetMiabGameModalService");
+            this.stopGame();
         }
     }
 });

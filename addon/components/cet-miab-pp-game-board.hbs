@@ -15,11 +15,17 @@
     <div class="cet-miab-game-board__control">
         <div class="cet-miab-game-board__control-item">
             {{cet-miab-game-timer countFrom=600 timerState=gameState timesUp=(action "timesUpAction")}}
+
+            <div class="cet-miab-game-board__control-item-label">Moves</div>
+            <div class="cet-miab-game-board__control-item-value">{{moves}}</div>
         </div>
         <div class="cet-miab-game-board__control-item">
             <div class="cet-miab-game-btn">
                 <button type="button" {{action "onGameCtrlBtnClick"}}>{{gameControlButtonLabel}}</button>
             </div>
+        </div>
+        <div class="cet-miab-game-board__control-item">
+            
         </div>
     </div>
 </div>
