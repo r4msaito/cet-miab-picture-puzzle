@@ -5,6 +5,7 @@ import constants from "cet-miab-game-core/util/constants";
 
 export default CetMIABGameBoard.extend({
     tagName: "",
+    cetMiabGameModalService: Ember.inject.service(),
     init() {
         this._super(...arguments);
         this.set("puzzleBoard", Ember.A([]));
@@ -75,10 +76,11 @@ export default CetMIABGameBoard.extend({
                 this.startGame();
             } else if (this.get("gameState") === constants.GAMESTATE.STARTED) {
                 this.stopGame();
+                this.get("cetMiabGameModalService").show("cet-miab-picture-puzzle-test-modal");
             }   
         },
         timesUpAction() {
-            console.log("times up");
+            console.log("cetMiabGameModalService");
         }
     }
 });
