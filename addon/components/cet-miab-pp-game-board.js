@@ -9,9 +9,9 @@ export default CetMIABGameBoard.extend({
     init() {
         this._super(...arguments);
         this.set("puzzleBoard", Ember.A([]));
-        this.set("validPuzzleBoard", this.getValidPuzzleBoard());
         this.set("puzzleBoardRowCount", 8);
         this.set("puzzleBoardColCount", 8);
+        this.createPuzzleBoard(config.validPuzzleMap);
         this.shufflePuzzleBoard();
     },
     getValidPuzzleBoard() {
