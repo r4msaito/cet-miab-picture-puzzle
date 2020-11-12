@@ -13,11 +13,10 @@
     </div>
 
     <div class="cet-miab-game-board__control">
-        <div class="cet-miab-game-board__control-item">
-            {{cet-miab-game-timer countFrom=600 timerState=gameState timesUp=(action "timesUpAction")}}
-
-            <div class="cet-miab-game-board__control-item-label">Moves</div>
-            <div class="cet-miab-game-board__control-item-value">{{moves}}</div>
+        <div class="cet-miab-game-board__control-item cet-miab-game-stats">
+            <div class="cet-miab-game-stats__item">
+                {{cet-miab-game-timer countFrom=6 timerState=gameState timesUp=(action "timesUpAction")}}
+            </div>
         </div>
         <div class="cet-miab-game-board__control-item">
             <div class="cet-miab-game-btn">
@@ -25,7 +24,9 @@
             </div>
         </div>
         <div class="cet-miab-game-board__control-item">
-            
+            <div class="cet-miab-game-help" {{action "showInstructionsAction"}}>
+                <img src="/cet-miab-game-core/assets/img/help.png" alt="help">
+            </div>
         </div>
     </div>
 </div>

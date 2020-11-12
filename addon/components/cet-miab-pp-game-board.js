@@ -12,7 +12,6 @@ export default CetMIABGameBoard.extend({
         this.set("validPuzzleBoard", this.getValidPuzzleBoard());
         this.set("puzzleBoardRowCount", 8);
         this.set("puzzleBoardColCount", 8);
-        this.setGameState(constants.GAMESTATE.STOPPED);
         this.shufflePuzzleBoard();
     },
     getValidPuzzleBoard() {
@@ -75,22 +74,29 @@ export default CetMIABGameBoard.extend({
                 this.showInstructions({
                     modalComponent: "cet-miab-picture-puzzle-help-modal",
                     showControls: true,
-                    onOkClick: this.startGame.bind(this),
+                    onOkClick: function() {
+                        this.shufflePuzzleBoard();
+                        this.startGame();
+                    }.bind(this),
                     okText: "Start"
                 });
             } else if (this.get("gameState") === constants.GAMESTATE.STARTED) {
                 this.stopGame();
-                this.get("cetMiabGameModalService").show({
-                    component: "cet-miab-game-win-modal",
-                    showControls: true,
-                    onOkClick: this.changeGame,
-                    okText: "Next Game",
-                    hideClose: true
-                });
-            }   
+
+            }
+        },
+        showInstructionsAction() {
+            this.showInstructions({
+                modalComponent: "cet-miab-picture-puzzle-help-modal",
+                showControls: false
+            });
         },
         timesUpAction() {
             this.stopGame();
+            this.get("cetMiabGameModalService").show({
+                component: "cet-miab-game-timesup-modal",
+                showControls: false
+            });
         }
     }
 });
