@@ -65,6 +65,10 @@ export default CetMIABGameBoard.extend({
 
                 if (this.isPuzzleValid()) {
                     this.gameWon();
+                    this.get("cetMiabGameModalService").show({
+                        component: "cet-miab-game-win-modal",
+                        showControls: false
+                    });
                 }
             }
         },
