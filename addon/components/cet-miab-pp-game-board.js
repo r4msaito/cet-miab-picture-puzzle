@@ -79,8 +79,8 @@ export default CetMIABGameBoard.extend({
         onGameCtrlBtnClick() {
             if (this.get("gameState") === constants.GAMESTATE.STOPPED) {
                 this.resetGame();
-                this.showInstructions({
-                    modalComponent: "cet-miab-picture-puzzle-help-modal",
+                this.get("cetMiabGameModalService").show({
+                    component: "cet-miab-picture-puzzle-help-modal",
                     showControls: true,
                     onOkClick: function() {
                         this.shufflePuzzleBoard();
@@ -94,10 +94,7 @@ export default CetMIABGameBoard.extend({
             }
         },
         showInstructionsAction() {
-            this.showInstructions({
-                modalComponent: "cet-miab-picture-puzzle-help-modal",
-                showControls: false
-            });
+            this.showInstructions("cet-miab-picture-puzzle-help-modal");
         },
         timesUpAction() {
             this.stopGame();
