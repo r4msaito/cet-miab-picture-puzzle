@@ -86,7 +86,10 @@ export default CetMIABGameBoard.extend({
             }
         },
         showInstructionsAction() {
-            this.showInstructions("cet-miab-picture-puzzle-help-modal");
+            this.showInstructions({
+                component: "cet-miab-picture-puzzle-help-modal",
+                title: "How to play!"
+            });
         },
         timesUpAction() {
             this.stopGame();
