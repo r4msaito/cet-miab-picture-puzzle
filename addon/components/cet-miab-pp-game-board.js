@@ -72,13 +72,14 @@ export default CetMIABGameBoard.extend({
             if (this.get("gameState") === constants.GAMESTATE.STOPPED) {
                 this.resetGame();
                 this.get("cetMiabGameModalService").show({
+                    title: this.get("cetMIABTranslation").t.common.help_modal.title,
                     component: "cet-miab-picture-puzzle-help-modal",
                     showControls: true,
                     onOkClick: function() {
                         this.shufflePuzzleBoard();
                         this.startGame();
                     }.bind(this),
-                    okText: "Start"
+                    okText: this.get("cetMIABTranslation").t.common.controls.start
                 });
             } else if (this.get("gameState") === constants.GAMESTATE.STARTED) {
                 this.stopGame();
@@ -88,7 +89,7 @@ export default CetMIABGameBoard.extend({
         showInstructionsAction() {
             this.showInstructions({
                 component: "cet-miab-picture-puzzle-help-modal",
-                title: "How to play!"
+                title: this.get("cetMIABTranslation").t.common.help_modal,title
             });
         },
         timesUpAction() {
