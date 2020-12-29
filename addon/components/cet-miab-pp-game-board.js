@@ -89,7 +89,18 @@ export default CetMIABGameBoard.extend({
         showInstructionsAction() {
             this.showInstructions({
                 component: "cet-miab-picture-puzzle-help-modal",
-                title: this.get("cetMIABTranslation").t.common.help_modal,title
+                title: this.get("cetMIABTranslation").t.common.help_modal.title
+            });
+        },
+        showReferenceImageAction() {
+            this.get("cetMiabGameModalService").show({
+                title: this.get("cetMIABTranslation").t.common.reference_image,
+                component: "cet-miab-picture-puzzle-reference-image-modal",
+                showControls: false,
+                onOkClick: function() {
+                    this.close();
+                },
+                okText: this.get("cetMIABTranslation").t.common.close
             });
         },
         timesUpAction() {

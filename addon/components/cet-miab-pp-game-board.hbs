@@ -23,7 +23,10 @@
                 <button type="button" {{action "onGameCtrlBtnClick"}}>{{gameControlButtonLabel}}</button>
             </div>
         </div>
-        <div class="cet-miab-game-board__control-item">
+        <div class="cet-miab-game-board__control-item cet-miab-pp-help">
+            <div class="cet-miab-game-help" {{action "showReferenceImageAction"}}>
+                <img src="/cet-miab-picture-puzzle/assets/img/ref-icon.png" alt="help">
+            </div>
             <div class="cet-miab-game-help" {{action "showInstructionsAction"}}>
                 <img src="/cet-miab-game-core/assets/img/help.png" alt="help">
             </div>
